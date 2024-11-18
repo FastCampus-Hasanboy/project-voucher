@@ -26,8 +26,7 @@ dependencies {
 	runtimeOnly("com.h2database:h2")
 	testRuntimeOnly("org.junit.platform:junit-platform-launcher")
 	testImplementation("org.assertj:assertj-core:3.24.2")
-
-
+	implementation("org.springdoc:springdoc-openapi-starter-webmvc-ui:2.2.0")
 }
 
 tasks.withType<Test> {
