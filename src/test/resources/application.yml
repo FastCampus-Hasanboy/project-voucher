@@ -1,0 +1,17 @@
+spring:
+  datasource:
+    url: jdbc:h2:mem:testdb  # In-memory database
+    driver-class-name: org.h2.Driver
+    username: sa
+    password:
+  jpa:
+    hibernate:
+      ddl-auto: update  # DDL yaratishni avtomatik qilish
+    show-sql: true
+  h2:
+    console:
+      enabled: true  # H2 console-ni yoqish
+
+logging:
+  level:
+    org.hibernate.orm.jdbc.bind: TRACE
