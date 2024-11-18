@@ -1,0 +1,26 @@
+POST http://localhost:8080/api/v1/employee
+Content-Type: application/json
+
+{
+  "name": "Hasanboy",
+  "position": "Senior",
+  "department": "SpringBootDeveloper"
+}
+
+<> 2024-11-18T231327.200.json
+<> 2024-11-18T230949.200.json
+<> 2024-11-18T194501.200.json
+<> 2024-11-18T180225.200.json
+<> 2024-11-18T180219.200.json
+<> 2024-11-18T175454.200.json
+
+###
+GET http://localhost:8080/api/v1/employee/2
+
+<> 2024-11-18T231333.200.json
+<> 2024-11-18T194508.500.json
+<> 2024-11-18T180245.200.json
+<> 2024-11-18T180237.200.json
+<> 2024-11-18T180209.500.json
+<> 2024-11-18T180158.500.json
+<> 2024-11-18T175931.500.json
