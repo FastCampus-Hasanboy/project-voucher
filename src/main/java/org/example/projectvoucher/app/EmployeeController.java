@@ -5,9 +5,6 @@ import org.example.projectvoucher.app.controller.response.EmployeeResponse;
 import org.example.projectvoucher.domain.employee.EmployeeService;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.HashMap;
-import java.util.Map;
-
 @RestController
 public class EmployeeController {
 

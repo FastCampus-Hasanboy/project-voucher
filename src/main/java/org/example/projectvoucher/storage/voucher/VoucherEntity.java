@@ -27,4 +27,23 @@ public class VoucherEntity extends BaseEntity {
         this.amount = amount;
     }
 
+    public String getCode() {
+        return code;
+    }
+
+    public VoucherStatusType getStatus() {
+        return status;
+    }
+
+    public LocalDate getValidFrom() {
+        return validFrom;
+    }
+
+    public LocalDate getValidTo() {
+        return validTo;
+    }
+
+    public Long getAmount() {
+        return amount;
+    }
 }
