@@ -1,7 +1,6 @@
 package org.example.projectvoucher.storage;
 
 import jakarta.persistence.*;
-import org.springframework.cglib.core.Local;
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.LastModifiedDate;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
@@ -30,7 +29,7 @@ public class BaseEntity {
         return createAt;
     }
 
-    public LocalDateTime updateat() {
+    public LocalDateTime updateAt() {
         return updateAt;
     }
 

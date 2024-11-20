@@ -11,6 +11,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 import static org.assertj.core.api.Assertions.assertThat;
 
 import java.time.LocalDate;
+import java.time.temporal.ChronoUnit;
 
 @SpringBootTest
 public class VoucherServiceTest {
@@ -38,6 +39,35 @@ public class VoucherServiceTest {
         assertThat(voucherEntity.getValidFrom()).isEqualTo(validFrom);
         assertThat(voucherEntity.getValidTo()).isEqualTo(validTo);
         assertThat(voucherEntity.getAmount()).isEqualTo(amount);
+    }
 
+    @DisplayName("발행된 상품권은 사용 불가 처리 할 수 있다.")
+    @Test
+    public void test2() {
+        // given
+        final LocalDate validFrom = LocalDate.now();
+        final LocalDate validTo = LocalDate.now().plusDays(30);
+        final Long amount = 10000L;
+        final String code = voucherService.publish(validFrom, validTo, amount);
+
+        // when
+        voucherService.disable(code);
+        final VoucherEntity voucherEntity = voucherRepository.findByCode(code).get();
+
+        // then
+        assertThat(voucherEntity.getCode()).isEqualTo(code);
+        assertThat(voucherEntity.getStatus()).isEqualTo(VoucherStatusType.DISABLE);
+        assertThat(voucherEntity.getValidFrom()).isEqualTo(validFrom);
+        assertThat(voucherEntity.getValidTo()).isEqualTo(validTo);
+        assertThat(voucherEntity.getAmount()).isEqualTo(amount);
+
+        // createAt va updateAt qiymatlarni sekundlarga qisqartirish orqali taqqoslash
+        assertThat(voucherEntity.updateAt().truncatedTo(ChronoUnit.SECONDS))
+                .isEqualTo(voucherEntity.createAt().truncatedTo(ChronoUnit.SECONDS));
+
+        // Tekshiruv maqsadida qiymatlarni konsolga chiqarish
+        System.out.println("-------> voucherEntity.createAt() = " + voucherEntity.createAt());
+        System.out.println("-------> voucherEntity.updateAt() = " + voucherEntity.updateAt());
     }
 }
+
