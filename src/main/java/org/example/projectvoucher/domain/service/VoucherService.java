@@ -1,6 +1,7 @@
 package org.example.projectvoucher.domain.service;
 
 import jakarta.transaction.Transactional;
+import org.example.projectvoucher.common.type.VoucherAmountType;
 import org.example.projectvoucher.common.type.VoucherStatusType;
 import org.example.projectvoucher.storage.voucher.VoucherEntity;
 import org.example.projectvoucher.storage.voucher.VoucherRepository;
@@ -19,7 +20,7 @@ public class VoucherService {
 
     // 상품권 발행
     @Transactional
-    public String publish(final LocalDate validFrom, final LocalDate validTo, final Long amount) {
+    public String publish(final LocalDate validFrom, final LocalDate validTo, final VoucherAmountType amount) {
         final String code = UUID.randomUUID().toString().toUpperCase().replaceAll("-", "");
         final VoucherEntity voucherEntity = new VoucherEntity(code, VoucherStatusType.PUBLISH, validFrom, validTo, amount);
         return voucherRepository.save(voucherEntity).getCode();

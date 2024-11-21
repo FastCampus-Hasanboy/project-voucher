@@ -1,5 +1,6 @@
 package org.example.projectvoucher.domain.service;
 
+import org.example.projectvoucher.common.type.VoucherAmountType;
 import org.example.projectvoucher.common.type.VoucherStatusType;
 import org.example.projectvoucher.storage.voucher.VoucherEntity;
 import org.example.projectvoucher.storage.voucher.VoucherRepository;
@@ -34,7 +35,7 @@ public class VoucherServiceDynamicTest {
                 dynamicTest("상품권을 발행합니다.", () -> {
                     final LocalDate validFrom = LocalDate.now();
                     final LocalDate validTo = LocalDate.now().plusDays(30);
-                    final Long amount = 10000L;
+                    final VoucherAmountType amount = VoucherAmountType.KRW_3000;
 
                     // when
                     final String code = voucherService.publish(validFrom, validTo, amount);
@@ -77,7 +78,7 @@ public class VoucherServiceDynamicTest {
                     // given
                     final LocalDate validFrom = LocalDate.now();
                     final LocalDate validTo = LocalDate.now().plusDays(30);
-                    final Long amount = 10000L;
+                    final VoucherAmountType amount = VoucherAmountType.KRW_3000;
 
                     final String code = voucherService.publish(validFrom, validTo, amount);
                     codes.add(code);
@@ -112,7 +113,7 @@ public class VoucherServiceDynamicTest {
                     // when
                     assertThatThrownBy(() -> voucherService.use(code))
                             .isInstanceOf(IllegalStateException.class)
-                            .hasMessage("사용할 수 없는 상태의 상품권x`입니다.");
+                            .hasMessage("사용할 수 없는 상태의 상품권입니다.");
 
                     // then
                     final VoucherEntity voucherEntity = voucherRepository.findByCode(code).get();

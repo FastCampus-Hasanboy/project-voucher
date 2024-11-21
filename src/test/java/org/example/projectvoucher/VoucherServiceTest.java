@@ -1,5 +1,6 @@
 package org.example.projectvoucher;
 
+import org.example.projectvoucher.common.type.VoucherAmountType;
 import org.example.projectvoucher.common.type.VoucherStatusType;
 import org.example.projectvoucher.domain.service.VoucherService;
 import org.example.projectvoucher.storage.voucher.VoucherEntity;
@@ -27,7 +28,7 @@ public class VoucherServiceTest {
         // given
         final LocalDate validFrom = LocalDate.now();
         final LocalDate validTo = LocalDate.now().plusDays(30);
-        final Long amount = 10000L;
+        final VoucherAmountType amount = VoucherAmountType.KRW_3000;
         final String code = voucherService.publish(validFrom, validTo, amount);
 
         // when
@@ -38,7 +39,7 @@ public class VoucherServiceTest {
         assertThat(voucherEntity.getStatus()).isEqualTo(VoucherStatusType.PUBLISH);
         assertThat(voucherEntity.getValidFrom()).isEqualTo(validFrom);
         assertThat(voucherEntity.getValidTo()).isEqualTo(validTo);
-        assertThat(voucherEntity.getAmount()).isEqualTo(amount);
+        assertThat(voucherEntity.amount()).isEqualTo(amount);
     }
 
     @DisplayName("발행된 상품권은 사용 불가 처리 할 수 있다.")
@@ -47,7 +48,7 @@ public class VoucherServiceTest {
         // given
         final LocalDate validFrom = LocalDate.now();
         final LocalDate validTo = LocalDate.now().plusDays(30);
-        final Long amount = 10000L;
+        final VoucherAmountType amount = VoucherAmountType.KRW_3000;
         final String code = voucherService.publish(validFrom, validTo, amount);
 
         // when
@@ -59,7 +60,7 @@ public class VoucherServiceTest {
         assertThat(voucherEntity.getStatus()).isEqualTo(VoucherStatusType.DISABLE);
         assertThat(voucherEntity.getValidFrom()).isEqualTo(validFrom);
         assertThat(voucherEntity.getValidTo()).isEqualTo(validTo);
-        assertThat(voucherEntity.getAmount()).isEqualTo(amount);
+        assertThat(voucherEntity.amount()).isEqualTo(amount);
 
         // createAt va updateAt qiymatlarni sekundlarga qisqartirish orqali taqqoslash
         assertThat(voucherEntity.updateAt().truncatedTo(ChronoUnit.SECONDS))
@@ -76,7 +77,7 @@ public class VoucherServiceTest {
         // given
         final LocalDate validFrom = LocalDate.now();
         final LocalDate validTo = LocalDate.now().plusDays(30);
-        final Long amount = 10000L;
+        final VoucherAmountType amount = VoucherAmountType.KRW_3000;
 
         final String code = voucherService.publish(validFrom, validTo, amount);
 
@@ -89,7 +90,7 @@ public class VoucherServiceTest {
         assertThat(voucherEntity.getStatus()).isEqualTo(VoucherStatusType.USE);
         assertThat(voucherEntity.getValidFrom()).isEqualTo(validFrom);
         assertThat(voucherEntity.getValidTo()).isEqualTo(validTo);
-        assertThat(voucherEntity.getAmount()).isEqualTo(amount);
+        assertThat(voucherEntity.amount()).isEqualTo(amount);
         assertThat(voucherEntity.createAt()).isNotEqualTo(voucherEntity.updateAt());
 
         System.out.println("-----> voucherEntity.createAt() = " + voucherEntity.createAt());
