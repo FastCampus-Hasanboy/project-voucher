@@ -1,4 +1,4 @@
-package org.example.projectvoucher;
+package org.example.projectvoucher.domain;
 
 import org.example.projectvoucher.app.controller.response.EmployeeResponse;
 import org.example.projectvoucher.domain.employee.EmployeeService;
