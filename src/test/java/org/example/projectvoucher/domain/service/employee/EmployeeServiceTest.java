@@ -1,7 +1,7 @@
-package org.example.projectvoucher.domain;
+package org.example.projectvoucher.domain.service.employee;
 
-import org.example.projectvoucher.app.controller.response.EmployeeResponse;
-import org.example.projectvoucher.domain.employee.EmployeeService;
+import org.example.projectvoucher.app.controller.employee.response.EmployeeResponse;
+import org.example.projectvoucher.domain.service.empoyee.EmployeeService;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
