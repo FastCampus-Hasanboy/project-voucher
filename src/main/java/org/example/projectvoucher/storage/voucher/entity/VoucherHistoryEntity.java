@@ -1,15 +1,12 @@
-package org.example.projectvoucher.storage.voucher;
+package org.example.projectvoucher.storage.voucher.entity;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.EnumType;
 import jakarta.persistence.Enumerated;
 import jakarta.persistence.Table;
 import org.example.projectvoucher.common.type.RequesterType;
-import org.example.projectvoucher.common.type.VoucherAmountType;
 import org.example.projectvoucher.common.type.VoucherStatusType;
 import org.example.projectvoucher.storage.BaseEntity;
-
-import java.time.LocalDate;
 
 @Entity
 @Table(name = "voucher_history")

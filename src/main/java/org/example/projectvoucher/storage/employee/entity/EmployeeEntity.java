@@ -1,4 +1,4 @@
-package org.example.projectvoucher.storage.employee;
+package org.example.projectvoucher.storage.employee.entity;
 
 import jakarta.persistence.*;
 import org.example.projectvoucher.storage.BaseEntity;

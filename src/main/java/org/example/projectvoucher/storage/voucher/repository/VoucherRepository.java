@@ -1,5 +1,6 @@
-package org.example.projectvoucher.storage.voucher;
+package org.example.projectvoucher.storage.voucher.repository;
 
+import org.example.projectvoucher.storage.voucher.entity.VoucherEntity;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.Optional;

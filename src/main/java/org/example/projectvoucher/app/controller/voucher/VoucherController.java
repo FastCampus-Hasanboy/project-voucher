@@ -1,9 +1,6 @@
 package org.example.projectvoucher.app.controller.voucher;
 
-import org.example.projectvoucher.app.controller.voucher.request.VoucherDisableV2Request;
-import org.example.projectvoucher.app.controller.voucher.request.VoucherPublishRequest;
-import org.example.projectvoucher.app.controller.voucher.request.VoucherPublishV2Request;
-import org.example.projectvoucher.app.controller.voucher.request.VoucherUseV2Request;
+import org.example.projectvoucher.app.controller.voucher.request.*;
 import org.example.projectvoucher.app.controller.voucher.response.VoucherDisableV2Response;
 import org.example.projectvoucher.app.controller.voucher.response.VoucherPublishResponse;
 import org.example.projectvoucher.app.controller.voucher.response.VoucherPublishV2Response;
@@ -78,5 +75,18 @@ public class VoucherController {
                 request.requesterId()), request.code());
 
         return new VoucherDisableV2Response(orderId);
+    }
+
+
+    // 상품권 발행 v3
+    @PostMapping("/api/v3/voucher")
+    public VoucherPublishV2Response publishV3(@RequestBody final VoucherPublishV3Request request) {
+        final String publishedVoucherCode = voucherService.publishV3(new RequestContext(
+                        request.requesterType(),
+                        request.requesterId()),
+                        request.contractCode(),
+                        request.amountType());
+        final String orderId = UUID.randomUUID().toString().toUpperCase().replaceAll("-", "");
+        return new VoucherPublishV2Response(orderId, publishedVoucherCode);
     }
 }

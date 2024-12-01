@@ -2,8 +2,8 @@ package org.example.projectvoucher.domain.service.voucher;
 
 import org.example.projectvoucher.common.type.VoucherAmountType;
 import org.example.projectvoucher.common.type.VoucherStatusType;
-import org.example.projectvoucher.storage.voucher.VoucherEntity;
-import org.example.projectvoucher.storage.voucher.VoucherRepository;
+import org.example.projectvoucher.storage.voucher.entity.VoucherEntity;
+import org.example.projectvoucher.storage.voucher.repository.VoucherRepository;
 import org.junit.jupiter.api.DynamicTest;
 import org.junit.jupiter.api.TestFactory;
 import org.springframework.beans.factory.annotation.Autowired;

@@ -1,8 +1,8 @@
 package org.example.projectvoucher.domain.service.empoyee;
 
 import org.example.projectvoucher.app.controller.employee.response.EmployeeResponse;
-import org.example.projectvoucher.storage.employee.EmployeeEntity;
-import org.example.projectvoucher.storage.employee.EmployeeRepository;
+import org.example.projectvoucher.storage.employee.entity.EmployeeEntity;
+import org.example.projectvoucher.storage.employee.repository.EmployeeRepository;
 import org.springframework.stereotype.Service;
 
 @Service

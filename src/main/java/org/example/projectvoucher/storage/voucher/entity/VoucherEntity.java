@@ -1,4 +1,4 @@
-package org.example.projectvoucher.storage.voucher;
+package org.example.projectvoucher.storage.voucher.entity;
 
 import jakarta.persistence.*;
 import org.example.projectvoucher.common.type.VoucherAmountType;
@@ -24,18 +24,23 @@ public class VoucherEntity extends BaseEntity {
     @JoinColumn(name = "voucher_id")
     private List<VoucherHistoryEntity> histories = new ArrayList<>();
 
+    @ManyToOne(cascade = CascadeType.PERSIST, fetch = FetchType.EAGER)
+    @JoinColumn(name = "contract_id")
+    private ContractEntity contract;
+
     public VoucherEntity() {
 
     }
 
-    public VoucherEntity(String code, VoucherStatusType status, LocalDate validFrom, LocalDate validTo, VoucherAmountType amount, VoucherHistoryEntity voucherHistoryEntity) {
+    public VoucherEntity(String code, VoucherStatusType status, VoucherAmountType amount, VoucherHistoryEntity voucherHistoryEntity, ContractEntity contractEntity) {
         this.code = code;
         this.status = status;
-        this.validFrom = validFrom;
-        this.validTo = validTo;
+        this.validFrom = LocalDate.now();
+        this.validTo = LocalDate.now().plusDays(contractEntity.getVoucherValidPeriodDayCount());
         this.amount = amount;
 
         this.histories.add(voucherHistoryEntity);
+        this.contract = contractEntity;
     }
 
     public String getCode() {
